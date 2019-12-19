@@ -1,0 +1,80 @@
+:root {
+  --main-icon-size: 4rem;
+  --main-logo-icon-size: 4rem;
+  --main-logo-text-size: 4.5rem;
+}
+
+@mixin nooutline {
+  &:active,
+  &:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #34495e;
+  padding: 4rem;
+  border-radius: 10px 10px 0 0;
+  box-shadow: black 5px 0px 5px;
+}
+
+.icon {
+  width: var(--main-icon-size);
+  height: var(--main-icon-size);
+}
+
+.logo {
+  flex: 1 0 20%;
+  position: relative;
+  &__name {
+    font-size: var(--main-logo-text-size);
+    margin-right: 2rem;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: white;
+  }
+  &--icon {
+    transform: rotate(30deg);
+    position: absolute;
+    top: 0;
+    left: 20rem;
+    width: var(--main-logo-icon-size);
+    height: var(--main-logo-icon-size);
+    fill: white;
+  }
+}
+
+.searchbar {
+  display: flex;
+  flex: 1 0 50%;
+  justify-content: center;
+  outline: none;
+
+  &__input {
+    flex: 0 0 80%;
+    border-radius: 6rem;
+    border-width: 0px;
+    padding-left: 3rem;
+    @include nooutline;
+  }
+  &__button {
+    flex: 0 0 20%;
+    border-radius: 6rem;
+    border-width: 0px;
+    transform: translateX(-100%);
+    font-weight: bold;
+    @include nooutline;
+  }
+}
+
+.favourites {
+  display: flex;
+  flex: 0 0 10%;
+  justify-content: center;
+  align-items: center;
+  fill: yellow;
+  stroke: black;
+}
