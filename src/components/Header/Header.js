@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
           <button className="btn header--btn">Search</button>
         </form>
         <div className="header__favourites">
-          <svg className=" icon favourites--icon">
+          <svg className=" icon header__favourites--icon">
             <use href="./sprite.svg#icon-star-full" />
           </svg>
         </div>
