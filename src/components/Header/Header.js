@@ -6,17 +6,17 @@ class SearchBar extends React.Component {
   render() {
     return (
       <header className="header">
-        <div className="logo">
-          <p className="logo__name">All Foods</p>
-          <svg className="icon logo--icon">
+        <div className="header__logo">
+          <p className="header__title">All Foods</p>
+          <svg className="icon header--icon">
             <use href="./sprite.svg#icon-spoon-knife" />
           </svg>
         </div>
-        <form className="searchbar">
-          <input className="searchbar__input"></input>
-          <button className="searchbar__button">Search</button>
+        <form className="header__searchbar">
+          <input className="header__input"></input>
+          <button className="btn header--btn">Search</button>
         </form>
-        <div className="favourites">
+        <div className="header__favourites">
           <svg className=" icon favourites--icon">
             <use href="./sprite.svg#icon-star-full" />
           </svg>
