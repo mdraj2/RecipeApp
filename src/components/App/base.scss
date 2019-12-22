@@ -20,11 +20,13 @@ body {
   display: flex;
   justify-content: center;
   background-color: #ecf0f1;
+  height: 100vh;
 }
 
 .main {
-  height: 100vh;
   flex: 0 0 75%;
   margin: 4vh 0;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }

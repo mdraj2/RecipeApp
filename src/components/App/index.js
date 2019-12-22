@@ -1,5 +1,7 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../Header";
+import Results from "../Results";
+
 import "./base.scss";
 
 class App extends React.Component {
@@ -9,6 +11,7 @@ class App extends React.Component {
     return (
       <div className="main">
         <Header />
+        <Results />
       </div>
     );
   }
