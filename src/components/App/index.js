@@ -12,8 +12,13 @@ class App extends React.Component {
 
   //Get results when search button is clicked and update state of results array
   getResults = async searchTerm => {
-    const res = await axios.get(`api/search?&q=${searchTerm}`);
-    this.setState({ results: res.data.recipes });
+    this.setState({ results: "loading" });
+    try {
+      const res = await axios.get(`api/search?&q=${searchTerm}`);
+      this.setState({ results: res.data.recipes });
+    } catch (err) {
+      this.setState({ results: "notfound" });
+    }
   };
 
   render() {
