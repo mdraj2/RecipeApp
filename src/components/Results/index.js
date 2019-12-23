@@ -7,7 +7,7 @@ import "./results.scss";
 const Results = props => {
   return (
     <div className="results">
-      <SearchResults />
+      <SearchResults results={props.results} />
       <DisplayRecipe />
     </div>
   );

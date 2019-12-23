@@ -2,7 +2,20 @@
 import React from "react";
 import "./header.scss";
 //This component i
+
 class SearchBar extends React.Component {
+  state = { searchitem: " " };
+
+  //callback getResults function in App component to update state results array
+  onClick = async event => {
+    event.preventDefault();
+    this.props.getResults(this.state.searchitem);
+  };
+
+  onInputChange = event => {
+    this.setState({ searchitem: event.target.value });
+  };
+
   render() {
     return (
       <header className="header">
@@ -12,8 +25,12 @@ class SearchBar extends React.Component {
             <use href="./sprite.svg#icon-spoon-knife" />
           </svg>
         </div>
-        <form className="header__searchbar">
-          <input className="header__input"></input>
+        <form className="header__searchbar" onSubmit={this.onClick}>
+          <input
+            className="header__input"
+            value={this.state.searchitem}
+            onChange={this.onInputChange}
+          ></input>
           <button className="btn header--btn">Search</button>
         </form>
         <div className="header__favourites">

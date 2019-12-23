@@ -1,17 +1,26 @@
 import React from "react";
 import Header from "../Header";
 import Results from "../Results";
+import axios from "./../../api/recipesapi";
 
 import "./base.scss";
 
 class App extends React.Component {
-  state = {};
+  state = { results: [] };
+
+  componentDidUpdate() {}
+
+  //Get results when search button is clicked and update state of results array
+  getResults = async searchTerm => {
+    const res = await axios.get(`api/search?&q=${searchTerm}`);
+    this.setState({ results: res.data.recipes });
+  };
 
   render() {
     return (
       <div className="main">
-        <Header />
-        <Results />
+        <Header getResults={this.getResults} />
+        <Results results={this.state.results} />
       </div>
     );
   }
