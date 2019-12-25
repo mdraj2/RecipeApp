@@ -15,6 +15,11 @@ class App extends React.Component {
     this.setState({ results: "loading" });
     try {
       const res = await axios.get(`api/search?&q=${searchTerm}`);
+      //Replace the unicode decimal code for apostrophe in the string recipes title
+      //e.g from "bill&#8217;s burger" to "bill's burger"
+      res.data.recipes.forEach((recipe, i) => {
+        res.data.recipes[i].title = recipe.title.replace("&#8217;", "'");
+      });
       this.setState({ results: res.data.recipes });
     } catch (err) {
       this.setState({ results: "notfound" });
