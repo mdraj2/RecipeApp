@@ -26,12 +26,12 @@
   border-radius: 10px 10px 0 0;
   box-shadow: black 5px 0px 5px;
   &__logo {
-    flex: 1 0 20%;
+    flex: 0 0 24%;
     position: relative;
+    line-height: 1;
   }
   &__title {
     font-size: var(--main-logo-text-size);
-    margin-right: 2rem;
     margin-bottom: 0rem;
     font-family: "Comic Sans MS", cursive, sans-serif;
     color: white;
@@ -52,23 +52,31 @@
     outline: none;
   }
   &__input {
-    flex: 0 0 80%;
+    flex: 0 1 80%;
     border-radius: 6rem;
     border-width: 0px;
     padding-left: 3rem;
+
     @include nooutline;
   }
   &--btn {
     flex: 0 0 20%;
     border-radius: 6rem;
     border-width: 0px;
-    transform: translateX(-100%);
+    transform: translateX(-99%);
     font-weight: bold;
+    background-color: #c20000;
+    color: white;
+    transition: all 0.5s;
     @include nooutline;
+    &:hover {
+      cursor: pointer;
+      background-color: #ff0000;
+    }
   }
   &__favourites {
     display: flex;
-    flex: 0 0 10%;
+    flex: 0 1 10%;
     justify-content: center;
     align-items: center;
     fill: yellow;
