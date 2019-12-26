@@ -11,9 +11,7 @@ class searchResults extends React.Component {
 
   componentDidUpdate() {}
 
-  componentDidMount() {
-    console.log(this.myRef.current);
-  }
+  componentDidMount() {}
 
   render() {
     const allResult = this.props.results;
@@ -28,7 +26,15 @@ class searchResults extends React.Component {
     const resultList = allResult.map(result => {
       return (
         <div className="result__item" key={result.recipe_id}>
-          <div className="result__title">{result.title}</div>
+          <div
+            className="result__title"
+            onClick={() => {
+              console.log(result.recipe_id);
+              return this.props.selectedRecipe(result.recipe_id);
+            }}
+          >
+            {result.title}
+          </div>
           <img
             alt={result.title}
             className="result__image"
@@ -45,9 +51,7 @@ class searchResults extends React.Component {
 
     return (
       <div className="result__list">
-        <div className="result__itemscontainer" ref={this.myRef}>
-          {resultList}
-        </div>
+        <div className="result__itemscontainer">{resultList}</div>
       </div>
     );
   }

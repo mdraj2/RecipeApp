@@ -1,9 +1,12 @@
 import React from "react";
 import "./displayRecipe.scss";
 
-const DisplayRecipe = props => {
+class DisplayRecipe extends React.Component {
   //this component will need to show the results
-  return <div className="result__display">DisplayRecipe</div>;
-};
+  state = { singleRecipe: "" };
+  render() {
+    return <div className="result__display">{this.state.singleRecipe}</div>;
+  }
+}
 
 export default DisplayRecipe;
