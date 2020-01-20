@@ -4,7 +4,7 @@ import "./header.scss";
 //This component i
 
 class SearchBar extends React.Component {
-  state = { searchitem: " " };
+  state = { searchitem: "" };
 
   //callback getResults function in App component to update state results array
   onClick = async event => {
@@ -27,9 +27,11 @@ class SearchBar extends React.Component {
         </div>
         <form className="header__searchbar" onSubmit={this.onClick}>
           <input
+            type="search"
             className="header__input"
             value={this.state.searchitem}
             onChange={this.onInputChange}
+            placeholder="Beef"
           ></input>
           <button className="btn header--btn">Search</button>
         </form>
