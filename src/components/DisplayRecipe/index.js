@@ -25,7 +25,7 @@ class DisplayRecipe extends React.Component {
         </div>
       );
     }
-    return <div className="recipe__details"></div>;
+    return null;
   }
 }
 
