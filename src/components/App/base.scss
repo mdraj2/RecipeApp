@@ -31,3 +31,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 1205px) {
+  .main {
+    flex-basis: 100%;
+    margin: 1vh 0;
+  }
+}

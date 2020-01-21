@@ -2,6 +2,7 @@
   --main-icon-size: 4rem;
   --main-logo-icon-size: 4rem;
   --main-logo-text-size: 4.5rem;
+  --break-laptop-small: 1024px;
 }
 
 @mixin nooutline {
@@ -26,7 +27,7 @@
   border-radius: 10px 10px 0 0;
   box-shadow: black 5px 0px 5px;
   &__logo {
-    flex: 0 0 24%;
+    flex: 1 0 24%;
     position: relative;
     line-height: 1;
   }
@@ -47,7 +48,8 @@
   }
   &__searchbar {
     display: flex;
-    flex: 1 0 50%;
+    flex: 0 1 75%;
+    transform: translateX(20%);
     justify-content: center;
     outline: none;
   }
@@ -81,5 +83,20 @@
     align-items: center;
     fill: yellow;
     stroke: black;
+  }
+}
+
+@media screen and (max-width: 1205px) {
+  .header {
+    padding: 1rem;
+    &__title {
+      font-size: calc(var(--main-logo-text-size) * 0.75);
+    }
+    &--icon {
+      left: 15rem;
+      width: calc(var(--main-logo-icon-size) * 0.75);
+      height: calc(var(--main-logo-icon-size) * 0.75);
+      fill: white;
+    }
   }
 }
