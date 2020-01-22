@@ -9,12 +9,19 @@
 }
 
 .result {
-  &__list {
+  &__list,
+  &__loading {
     flex: 0 0 30%;
     display: flex;
     flex-direction: column;
+
     padding-top: 2rem;
     border-right: 1px solid black;
+  }
+
+  &__loading {
+    align-items: center;
+    justify-content: center;
   }
 
   &__itemscontainer {

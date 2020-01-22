@@ -1,6 +1,7 @@
 import React from "react";
 import DisplayRecipe from "./../DisplayRecipe";
 import SearchResults from "./../SearchResults";
+import equal from "fast-deep-equal";
 import axios from "axios";
 
 import "./results.scss";
@@ -10,6 +11,8 @@ class Results extends React.Component {
   state = { selectedRecipe: null };
 
   onRecipeClick = async recipeID => {
+    //clear out the previous image
+    this.setState({ selectedRecipe: "loading" });
     try {
       if (!recipeID) return "";
       const res = await axios(
@@ -23,6 +26,12 @@ class Results extends React.Component {
       throw err;
     }
   };
+  //this is to update the details page when the search button is clicked
+  componentDidUpdate(prevProps) {
+    if (!equal(this.props.results, prevProps.results)) {
+      this.setState({ selectedRecipe: null });
+    }
+  }
 
   render() {
     return (

@@ -1,5 +1,6 @@
 import React from "react";
 import "./searchResults.scss";
+import Spinner from "./../Spinner";
 
 class searchResults extends React.Component {
   //this will need to render a list of images
@@ -16,7 +17,11 @@ class searchResults extends React.Component {
   render() {
     const allResult = this.props.results;
     if (allResult === "loading") {
-      return <div className="result__list">Loading</div>;
+      return (
+        <div className="result__loading">
+          <Spinner />
+        </div>
+      );
     } else if (allResult === "notfound") {
       return (
         <div className="result__list">We dont have that in our cookbook</div>

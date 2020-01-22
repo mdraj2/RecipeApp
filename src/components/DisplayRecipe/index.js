@@ -1,5 +1,6 @@
 import React from "react";
 import "./displayRecipe.scss";
+import Spinner from "./../Spinner";
 
 class DisplayRecipe extends React.Component {
   //this component will need to show the results
@@ -10,6 +11,14 @@ class DisplayRecipe extends React.Component {
   }
 
   render() {
+    if (this.props.recipe === "loading") {
+      return (
+        <div className="recipe__loading">
+          <Spinner />
+        </div>
+      );
+    }
+
     if (this.props.recipe) {
       return (
         <div className="recipe__details">
