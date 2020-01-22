@@ -30,16 +30,14 @@ class searchResults extends React.Component {
     //it might be better to
     const resultList = allResult.map(result => {
       return (
-        <div className="result__item" key={result.recipe_id}>
-          <div
-            className="result__title"
-            onClick={() => {
-              console.log(result.recipe_id);
-              return this.props.selectedRecipe(result.recipe_id);
-            }}
-          >
-            {result.title}
-          </div>
+        <div
+          className="result__item"
+          key={result.recipe_id}
+          onClick={() => {
+            return this.props.selectedRecipe(result.recipe_id);
+          }}
+        >
+          <div className="result__title">{result.title}</div>
           <img
             alt={result.title}
             className="result__image"
