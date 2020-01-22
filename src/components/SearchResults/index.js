@@ -33,9 +33,7 @@ class searchResults extends React.Component {
         <div
           className="result__item"
           key={result.recipe_id}
-          onClick={() => {
-            return this.props.selectedRecipe(result.recipe_id);
-          }}
+          onClick={() => this.props.selectedRecipe(result.recipe_id)}
         >
           <div className="result__title">{result.title}</div>
           <img
