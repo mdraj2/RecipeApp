@@ -8,6 +8,11 @@ This is my first react project. This app is my take on Jonas schmedtmann food2fo
 
 ### Installing
 ```
+npm install
+```
+
+### Usage
+```
 npm run start
 ```
 
