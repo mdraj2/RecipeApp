@@ -4,7 +4,7 @@ A web app to search for recipes
 
 ## Description
 
-This is my first react project. This app is a take on Jonas schmedtmann food2fork app done in React 
+This is my first react project. This app is my take on Jonas schmedtmann food2fork app done in React 
 
 ### Installing
 ```
