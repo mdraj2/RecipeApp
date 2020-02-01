@@ -11,20 +11,17 @@ class App extends React.Component {
   render() {
     return (
       <div className="main">
-        <Header getResults={this.getRawResults} />
+        <Header getResults={this.setStateOnRecipes} />
         <Results results={formatRecipeTitle(this.state.recipes)} />
       </div>
     );
   }
 
-  getRawResults = async searchTerm => {
+  setStateOnRecipes = async searchTerm => {
     try {
       this.setState({ recipes: "loading" });
-      const recipesAPIresponseObject = await axios.get(
-        `api/search?&q=${searchTerm}`
-      );
-      const recipesDataArray = recipesAPIresponseObject.data.recipes;
-      this.setState({ recipes: recipesDataArray });
+      const recipes = await getRecipesForSearchTerm(searchTerm);
+      this.setState({ recipes });
     } catch (error) {
       this.setState({ recipes: "notfound" });
     }
@@ -64,6 +61,13 @@ const convertUnicodeDecimalCodeToCharacterString = (
   let replaceUnicodeDecimalWith;
   if (UnicodeDecimal === "&#8217;") replaceUnicodeDecimalWith = "'";
   return orignalString.replace(UnicodeDecimal, replaceUnicodeDecimalWith);
+};
+
+const getRecipesForSearchTerm = async searchTerm => {
+  const recipesAPIresponseObject = await axios.get(
+    `api/search?&q=${searchTerm}`
+  );
+  return recipesAPIresponseObject.data.recipes;
 };
 
 export default App;
