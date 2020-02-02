@@ -6,6 +6,10 @@ class SearchBar extends React.Component {
   state = { searchTerm: "" };
 
   render() {
+    return this.showHeader();
+  }
+
+  showHeader = () => {
     return (
       <header className="header">
         <div className="header__logo">
@@ -34,7 +38,7 @@ class SearchBar extends React.Component {
         </div>
       </header>
     );
-  }
+  };
 
   getResultsForSearchTerm = async event => {
     event.preventDefault();
