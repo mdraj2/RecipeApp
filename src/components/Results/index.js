@@ -14,7 +14,7 @@ class Results extends React.Component {
     return (
       <div className="results">
         <SearchResults
-          results={this.props.results}
+          allRecipes={this.props.results}
           selectedRecipe={this.setStateOnSelectedRecipe}
         />
         <DisplayRecipe recipe={this.state.selectedRecipe} />
