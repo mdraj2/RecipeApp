@@ -1,36 +1,24 @@
-//This component will make the searchbar
 import React from "react";
 import "./header.scss";
-//This component i
 
 class SearchBar extends React.Component {
-  state = { searchitem: "" };
-
-  //callback getResults function in App component to update state results array
-  onClick = async event => {
-    event.preventDefault();
-    this.props.getResults(this.state.searchitem);
-  };
-
-  onInputChange = event => {
-    this.setState({ searchitem: event.target.value });
-  };
+  state = { searchTerm: "" };
 
   render() {
     return (
       <header className="header">
         <div className="header__logo">
-          <p className="header__title">All Foods</p>
+          <h1 className="header__title">All Foods</h1>
           <svg className="icon header--icon">
             <use href="./sprite.svg#icon-spoon-knife" />
           </svg>
         </div>
-        <form className="header__searchbar" onSubmit={this.onClick}>
+        <form className="header__searchbar" onSubmit={this.getResultsForSearchTerm}>
           <input
             type="search"
             className="header__input"
-            value={this.state.searchitem}
-            onChange={this.onInputChange}
+            value={this.state.searchTerm}
+            onChange={this.recordCurrentSearchTermOnState}
             placeholder="Beef"
           ></input>
           <button className="btn header--btn">Search</button>
@@ -43,6 +31,15 @@ class SearchBar extends React.Component {
       </header>
     );
   }
+
+  getResultsForSearchTerm = async event => {
+    event.preventDefault();
+    await this.props.getResults(this.state.searchTerm);
+  };
+
+  recordCurrentSearchTermOnState = event => {
+    this.setState({ searchTerm: event.target.value });
+  };
 }
 
 export default SearchBar;
