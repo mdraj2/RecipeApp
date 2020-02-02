@@ -1,49 +1,56 @@
-import React from "react";
 import DisplayRecipe from "./../DisplayRecipe";
 import SearchResults from "./../SearchResults";
+import formatRecipeTitleInArrayOfObjects from "../Utils/formatRecipeTitleInArrayOfObjects";
+import "./results.scss";
+
+import React from "react";
 import equal from "fast-deep-equal";
 import axios from "axios";
 
-import "./results.scss";
-
 class Results extends React.Component {
-  //makes sense to setstate on this and passdown the prop to displayRecipe
   state = { selectedRecipe: null };
-
-  onRecipeClick = async recipeID => {
-    //clear out the previous image
-    this.setState({ selectedRecipe: "loading" });
-    try {
-      if (!recipeID) return "";
-      const res = await axios(
-        `https://forkify-api.herokuapp.com/api/get?rId=${recipeID}`
-      );
-
-      res.data.recipe.title = res.data.recipe.title.replace("&#8217;", "'");
-      this.setState({ selectedRecipe: res.data.recipe });
-      console.log(this.state);
-    } catch (err) {
-      throw err;
-    }
-  };
-  //this is to update the details page when the search button is clicked
-  componentDidUpdate(prevProps) {
-    if (!equal(this.props.results, prevProps.results)) {
-      this.setState({ selectedRecipe: null });
-    }
-  }
 
   render() {
     return (
       <div className="results">
         <SearchResults
           results={this.props.results}
-          selectedRecipe={this.onRecipeClick}
+          selectedRecipe={this.setStateOnSelectedRecipe}
         />
         <DisplayRecipe recipe={this.state.selectedRecipe} />
       </div>
     );
   }
+
+  componentDidUpdate(prevProps) {
+    this.clearSelectedRecipeIfNewSearch(prevProps.results);
+  }
+
+  clearSelectedRecipeIfNewSearch(previousResults) {
+    //if the results array are not the same, then user must have requested for new recipes
+    let newResults = !equal(this.props.results, previousResults);
+    if (newResults) this.setState({ selectedRecipe: null });
+  }
+
+  setStateOnSelectedRecipe = async recipeID => {
+    try {
+      this.setState({ selectedRecipe: "loading" });
+      const recipeDetails = await getDetailsforRecipe(recipeID);
+      //wrap recipeDetails object in an array to use formatRecipeTitleInArrayOfObjects function
+      const RecipeArray = formatRecipeTitleInArrayOfObjects([recipeDetails]);
+      this.setState({ selectedRecipe: RecipeArray[0] });
+    } catch (error) {
+      throw error;
+    }
+  };
 }
+
+/* Private functions */
+const getDetailsforRecipe = async recipeID => {
+  const recipeDetailsAPIresponseObject = await axios(
+    `https://forkify-api.herokuapp.com/api/get?rId=${recipeID}`
+  );
+  return recipeDetailsAPIresponseObject.data.recipe;
+};
 
 export default Results;

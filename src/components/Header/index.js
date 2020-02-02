@@ -1,5 +1,6 @@
-import React from "react";
 import "./header.scss";
+
+import React from "react";
 
 class SearchBar extends React.Component {
   state = { searchTerm: "" };
@@ -13,7 +14,10 @@ class SearchBar extends React.Component {
             <use href="./sprite.svg#icon-spoon-knife" />
           </svg>
         </div>
-        <form className="header__searchbar" onSubmit={this.getResultsForSearchTerm}>
+        <form
+          className="header__searchbar"
+          onSubmit={this.getResultsForSearchTerm}
+        >
           <input
             type="search"
             className="header__input"

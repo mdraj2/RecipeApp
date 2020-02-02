@@ -1,9 +1,10 @@
-import React from "react";
 import Header from "../Header";
 import Results from "../Results";
+import formatRecipeTitleInArrayOfObjects from "../Utils/formatRecipeTitleInArrayOfObjects";
 import axios from "./../../api/recipesapi";
-
 import "./base.scss";
+
+import React from "react";
 
 class App extends React.Component {
   state = { recipes: [] };
@@ -12,7 +13,9 @@ class App extends React.Component {
     return (
       <div className="main">
         <Header getResults={this.setStateOnRecipes} />
-        <Results results={formatRecipeTitle(this.state.recipes)} />
+        <Results
+          results={formatRecipeTitleInArrayOfObjects(this.state.recipes)}
+        />
       </div>
     );
   }
@@ -29,40 +32,6 @@ class App extends React.Component {
 }
 
 /* Private functions */
-
-const formatRecipeTitle = recipes => {
-  if (Array.isArray(recipes)) {
-    const formattedRecipeArray = createNewFormatedRecipeTitleArray(recipes);
-    return formattedRecipeArray;
-  }
-  return recipes;
-};
-
-const createNewFormatedRecipeTitleArray = recipes => {
-  const newFormattedArray = recipes.map(singleRecipe => {
-    singleRecipe.title = convertUnicodeDecimalInRecipeTitle(singleRecipe.title);
-    return singleRecipe;
-  });
-  return newFormattedArray;
-};
-
-const convertUnicodeDecimalInRecipeTitle = title => {
-  const apostropheInUnicodeDecimalCode = "&#8217;";
-  return convertUnicodeDecimalCodeToCharacterString(
-    title,
-    apostropheInUnicodeDecimalCode
-  );
-};
-
-const convertUnicodeDecimalCodeToCharacterString = (
-  orignalString,
-  UnicodeDecimal
-) => {
-  let replaceUnicodeDecimalWith;
-  if (UnicodeDecimal === "&#8217;") replaceUnicodeDecimalWith = "'";
-  return orignalString.replace(UnicodeDecimal, replaceUnicodeDecimalWith);
-};
-
 const getRecipesForSearchTerm = async searchTerm => {
   const recipesAPIresponseObject = await axios.get(
     `api/search?&q=${searchTerm}`
