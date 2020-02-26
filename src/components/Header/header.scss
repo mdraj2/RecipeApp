@@ -48,13 +48,12 @@
   }
   &__searchbar {
     display: flex;
-    flex: 0 1 75%;
-    transform: translateX(20%);
-    justify-content: center;
+    position: relative;
+    flex: 0 1 50%;
     outline: none;
   }
   &__input {
-    flex: 0 1 80%;
+    flex: 1 0 50%;
     border-radius: 6rem;
     border-width: 0px;
     padding-left: 3rem;
@@ -62,10 +61,13 @@
     @include nooutline;
   }
   &--btn {
-    flex: 0 0 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: var(--main-logo-text-size);
+    min-width: 30%;
     border-radius: 6rem;
     border-width: 0px;
-    transform: translateX(-99%);
     font-weight: bold;
     background-color: #c20000;
     color: white;
@@ -93,10 +95,13 @@
       font-size: calc(var(--main-logo-text-size) * 0.75);
     }
     &--icon {
-      left: 15rem;
+      left: 20rem;
       width: calc(var(--main-logo-icon-size) * 0.75);
       height: calc(var(--main-logo-icon-size) * 0.75);
       fill: white;
+    }
+    &--btn {
+      height: calc(var(--main-logo-text-size) * 0.75);
     }
   }
 }

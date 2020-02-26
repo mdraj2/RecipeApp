@@ -51,7 +51,11 @@ const showSpinner = () => {
 };
 
 const showNotFoundText = () => {
-  return <div className="result__list">We dont have that in our cookbook</div>;
+  return (
+    <div className="result__loading result__loading--error">
+      We dont have that in our cookbook
+    </div>
+  );
 };
 
 export default searchResults;
